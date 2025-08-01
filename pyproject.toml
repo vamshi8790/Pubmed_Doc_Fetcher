@@ -1,0 +1,83 @@
+[tool.poetry]
+package-mode = true
+name = "pubmed-paper-fetcher"
+version = "1.0.0"
+description = "Fetch research papers from PubMed with pharmaceutical/biotech company authors"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/yourusername/pubmed-paper-fetcher"
+repository = "https://github.com/yourusername/pubmed-paper-fetcher"
+documentation = "https://github.com/yourusername/pubmed-paper-fetcher"
+keywords = ["pubmed", "research", "papers", "pharmaceutical", "biotech"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+[[tool.poetry.packages]]
+include = "pubmed_doc_fetcher"
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+black = "^23.7.0"
+isort = "^5.12.0"
+flake8 = "^6.0.0"
+mypy = "^1.5.0"
+types-requests = "^2.31.0"
+
+[tool.poetry.scripts]
+get-papers-list = "pubmed_doc_fetcher.pubmed_cli:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    # directories
+    \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | build
+    | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
